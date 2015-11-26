@@ -1,0 +1,33 @@
+[System]
+Name='Water_Tank'
+Type='mamdani'
+Version=2.0
+NumInputs=1
+NumOutputs=1
+NumRules=3
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='level'
+Range=[0 10]
+NumMFs=3
+MF1='okay':'gaussmf',[1.5 5]
+MF2='low':'gaussmf',[1.5 0]
+MF3='high':'gaussmf',[1.5 10]
+
+[Output1]
+Name='valve'
+Range=[0 3]
+NumMFs=3
+MF1='openfast':'trimf',[0 0.5 1]
+MF2='nochange':'trimf',[1 1.5 2]
+MF3='closefast':'trimf',[2 2.5 3]
+
+[Rules]
+1, 2 (1) : 1
+2, 1 (1) : 1
+3, 3 (1) : 1
